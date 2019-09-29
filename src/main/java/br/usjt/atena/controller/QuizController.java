@@ -10,7 +10,7 @@ public class QuizController {
 	//private QuizRepository  quizRepo;
 	@GetMapping ("/quiz")
 	public ModelAndView listarAlunos () {
-		ModelAndView mv = new ModelAndView ("teste");
+		ModelAndView mv = new ModelAndView ("quiz");
 		//List<Quiz> pergunta = quizRepo.findAll();
 		//mv.addObject("alunos", pergunta);
 		return mv;
