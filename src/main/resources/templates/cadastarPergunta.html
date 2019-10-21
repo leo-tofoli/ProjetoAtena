@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Cadastrar Pergunta</title>
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<section class="container-fluid bg">
+		<section class="row justify-content-center">
+			<section class="col-12 col-sm-6 col-md-3">
+				<form class="form-container" method="post" th:object="${quiz}"
+					th:action="@{/cadastrarPergunta}">
+					<div class="form-group">
+						<label for="txtPergunta">Pergunta</label>
+						<textarea rows="4" cols="50" required class="form-control"
+							id="txtPergunta" th:field="*{pergunta}"></textarea>
+					</div>
+					<div class="form-group">
+						<label for="txtErradaA">Resposta Errada</label> <input required
+							type="text" class="form-control" id="txtErradaA"
+							th:field="*{erradaA}" />
+					</div>
+					<div class="form-group">
+						<label for="txtErradaB">Resposta Errada</label> <input required
+							type="text" class="form-control" id="txtErradaB"
+							th:field="*{erradaB}" />
+					</div>
+					<div class="form-group">
+						<label for="txtResposta">Alternativa Correta</label> <input
+							required type="text" class="form-control" id="txtResposta"
+							th:field="*{resposta}" />
+					</div>
+					<button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+				</form>
+			</section>
+		</section>
+	</section>
+</body>
+</html>

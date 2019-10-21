@@ -12,16 +12,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Quiz {
-	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String pergunta;
-	private String a;
-	private String b;
-	private String c;
-	private String d;
+	private String erradaA;
+	private String erradaB;
 	private String resposta;
-
 
 }
