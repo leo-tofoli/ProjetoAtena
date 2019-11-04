@@ -199,8 +199,18 @@ body {
 
 <body>
 	<div id="container">
+		<select id="categoria">
+			<option value="gerais">Assuntos Gerais</option>
+			<option value="entreterimento">Entretenimento</option>
+			<option value="mitologia">Mitologia</option>
+			<option value="esporte">Esporte</option>
+			<option value="historia">Historia</option>
+			<option value="arte">Arte</option>
+		</select>
+
+
 		<div id="start">Começar Quiz!</div>
-		<div id="quest">Cadastrar pergunta</div>
+		<div id="quest" style="display: none">Cadastrar pergunta</div>
 		<div id="quiz" style="display: none">
 			<div id="question"></div>
 			<div id="qImg"></div>
@@ -220,11 +230,8 @@ body {
 	</div>
 </body>
 <script type="text/javascript">
-	document.addEventListener("DOMContentLoaded", function() {
-		start.click();
-	});
-
 	//select all elements
+	const categoria = document.getElementById("categoria");
 	const start = document.getElementById("start");
 	const quest = document.getElementById("quest");
 	const quiz = document.getElementById("quiz");
@@ -238,32 +245,8 @@ body {
 	const progress = document.getElementById("progress");
 	const scoreDiv = document.getElementById("scoreContainer");
 
-	// create our questions
-	let questions = [ {
-		question : "Em que ano a Apple foi fundada?",
-		imgSrc : "img/html.png",
-		choiceA : "1976",
-		choiceB : "1980",
-		choiceC : "1995",
-		correct : "A"
-	}, {
-		question : "Qual a capital de São Paulo?",
-		imgSrc : "img/css.png",
-		choiceA : "Itaquera",
-		choiceB : "São Paulo",
-		choiceC : "Osasco",
-		correct : "B"
-	}, {
-		question : "Quantos ossos tem um corpo adulto",
-		imgSrc : "img/js.png",
-		choiceA : "300",
-		choiceB : "270",
-		choiceC : "206",
-		correct : "C"
-	} ];
-
 	//create some variables
-	const lastQuestion = questions.length - 1;
+
 	let runningQuestion = 0;
 	let count = 0;
 	const questionTime = 10; // 10s
@@ -271,12 +254,14 @@ body {
 	const gaugeUnit = gaugeWidth / questionTime;
 	let TIMER;
 	let score = 0;
+	let questions = [];
+	let lastQuestion = questions.length - 1;
 	// render a question
 	function renderQuestion() {
 		let q = questions[runningQuestion];
 
 		question.innerHTML = "<p>" + q.question + "</p>";
-		qImg.innerHTML = "<img src="+ q.imgSrc +">";
+
 		choiceA.innerHTML = q.choiceA;
 		choiceB.innerHTML = q.choiceB;
 		choiceC.innerHTML = q.choiceC;
@@ -286,6 +271,192 @@ body {
 	function startQuiz() {
 		start.style.display = "none";
 		quest.style.display = "none";
+		switch (categoria.value) {
+		case "gerais":
+			questions = [
+					{
+						question : "De quem é a famosa frase 'Penso, logo existo'?",
+						imgSrc : "img/html.png",
+						choiceA : "Sócrates",
+						choiceB : "Descartes",
+						choiceC : "Platão",
+						correct : "B"
+					},
+					{
+						question : "Qual o nome do presidente do Brasil que ficou conhecido como Jango?",
+						imgSrc : "img/html.png",
+						choiceA : "João Figueiredo",
+						choiceB : "Jânio Quadros",
+						choiceC : "João Goulart",
+						correct : "B"
+					},
+					{
+						question : "Qual o livro mais vendido no mundo a seguir à Bíblia?",
+						imgSrc : "img/html.png",
+						choiceA : "O Pequeno Príncipe",
+						choiceB : "Dom Quixotes",
+						choiceC : "Divina Comédia",
+						correct : "B"
+					}, {
+						question : "Quantas casas decimais tem o número PI?",
+						imgSrc : "img/html.png",
+						choiceA : "Centenas",
+						choiceB : "Milhares",
+						choiceC : "Trilhares",
+						correct : "C"
+					} ];
+			break;
+		case "entreterimento":
+			questions = [ {
+				question : "Qual a raça do cachorro em Marley & Eu? (2008)?",
+				imgSrc : "img/html.png",
+				choiceA : "Labrador Retriever",
+				choiceB : "Golden Retriever",
+				choiceC : "Shiba Inu",
+				correct : "A"
+			} ];
+			break;
+		case "mitologia":
+			questions = [
+					{
+						question : "O antigo deus romano da guerra era conhecido como qual dos seguintes?",
+						imgSrc : "img/html.png",
+						choiceA : "Ares",
+						choiceB : "Jupiter",
+						choiceC : "Marte",
+						correct : "C"
+					},
+					{
+						question : "Quem foi o único deus da Grécia que não conseguiu mudar de nome em Roma?",
+						imgSrc : "img/html.png",
+						choiceA : "Atena",
+						choiceB : "Zeus",
+						choiceC : "Apollo",
+						correct : "C"
+					},
+					{
+						question : "Que figura da mitologia grega viajou para o submundo para devolver sua esposa Eurydice à terra dos vivos?",
+						imgSrc : "img/html.png",
+						choiceA : "Orpheus",
+						choiceB : "Perseus",
+						choiceC : "Hercules",
+						correct : "A"
+					},
+					{
+						question : "O hipogrifo, é uma criatura mágica com a metade da frente de uma águia e a metade de trás do que?",
+						imgSrc : "img/html.png",
+						choiceA : "Cavalo",
+						choiceB : "Tigre",
+						choiceC : "Leão",
+						correct : "A"
+					} ];
+			break;
+		case "esporte":
+			questions = [
+					{
+						question : "Que batalha naval foi considerada o ponto de virada do Teatro do Oceano Pacífico durante a Segunda Guerra Mundial?",
+						imgSrc : "img/html.png",
+						choiceA : "Jordan",
+						choiceB : "Ferrari",
+						choiceC : "Mercedes",
+						correct : "A"
+					},
+					{
+						question : "Quantos jogadores de futebol devem estar em campo ao mesmo tempo?",
+						imgSrc : "img/html.png",
+						choiceA : "11",
+						choiceB : "22",
+						choiceC : "28",
+						correct : "B"
+					},
+					{
+						question : "Qual é o cinto mais alto que você pode encontrar em Taekwondo?",
+						imgSrc : "img/html.png",
+						choiceA : "Vermelha",
+						choiceB : "Preta",
+						choiceC : "Verde",
+						correct : "B"
+					},
+					{
+						question : "Qual país está sediando a Copa do Mundo da FIFA 2022?",
+						imgSrc : "img/html.png",
+						choiceA : "Qatar",
+						choiceB : "Russia",
+						choiceC : "China",
+						correct : "A"
+					} ];
+			break;
+		case "historia":
+			questions = [
+					{
+						question : "Que batalha naval foi considerada o ponto de virada do Teatro do Oceano Pacífico durante a Segunda Guerra Mundial?",
+						imgSrc : "img/html.png",
+						choiceA : "Batalha do Mar de Coral",
+						choiceB : "Ataque em Pearl Harbor",
+						choiceC : "Batalha de Midway",
+						correct : "C"
+					},
+					{
+						question : "Quando a Jamaica recebeu sua independência da Inglaterra?",
+						imgSrc : "img/html.png",
+						choiceA : "1492",
+						choiceB : "1962",
+						choiceC : "1987",
+						correct : "B"
+					},
+					{
+						question : "Em que ano começou a Primeira Guerra Mundial??",
+						imgSrc : "img/html.png",
+						choiceA : "1914",
+						choiceB : "1916",
+						choiceC : "1917",
+						correct : "A"
+					}, {
+						question : "Quem foi o primeiro homem a ir ao espaço?",
+						imgSrc : "img/html.png",
+						choiceA : "Yuri Alekseievitch Gagarin",
+						choiceB : "Neil Armstrong",
+						choiceC : "Michael Collins",
+						correct : "A"
+					} ];
+			break;
+		case "arte":
+			questions = [
+					{
+						question : "Quem pintou a Capela Sistina?",
+						imgSrc : "img/html.png",
+						choiceA : "Leonardo da Vinci",
+						choiceB : "Michelangelo",
+						choiceC : "Pablo Picasso",
+						correct : "B"
+					},
+					{
+						question : "Que escultor francês projetou a Estátua da Liberdade?",
+						imgSrc : "img/html.png",
+						choiceA : "Henri Matisse",
+						choiceB : "Auguste Rodin",
+						choiceC : "Auguste Bartholdi",
+						correct : "C"
+					},
+					{
+						question : "Qual a nacionalidade do pintor surrealista Salvador Dali?",
+						imgSrc : "img/html.png",
+						choiceA : "Português",
+						choiceB : "Espanhol",
+						choiceC : "Brasileiro",
+						correct : "B"
+					},
+					{
+						question : "Qual pintura não foi feita por Vincent Van Gogh?",
+						imgSrc : "img/html.png",
+						choiceA : "Bedroom In Arles",
+						choiceB : "Starry Night",
+						choiceC : "The Ninth Wave",
+						correct : "C"
+					} ];
+			break;
+		}
+		lastQuestion = questions.length - 1;
 		renderQuestion();
 		quiz.style.display = "block";
 		renderProgress();
